@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontSize: 15,
       fontWeight: 'bold',
+      color: '#acbf47',
   },
   headerTextRegular: {
       textAlign: 'center',

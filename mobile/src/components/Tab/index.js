@@ -1,13 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+
+import styles from './styles';
 
 function Tab() {
   return (
-    <View>
-      <View>
-          <Ionicons name='ios-add' />
-      </View>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.addIconContainer}>
+          <Ionicons name='ios-add' color="white" size={35} />
+      </TouchableOpacity>
     </View>
   );
 }

@@ -1,17 +1,36 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import ExpenceItem from './ExpenceItem';
 
 function ExpencesList() {
   return (
-    <View>
+    <ScrollView>
       <ExpenceItem />
       <ExpenceItem />
       <ExpenceItem />
       <ExpenceItem />
       <ExpenceItem />
-    </View>
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+      <ExpenceItem />
+    </ScrollView>
   );
 }
 
