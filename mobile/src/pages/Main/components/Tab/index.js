@@ -4,10 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-function Tab() {
+function Tab({ navigation }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.addIconContainer}>
+      <TouchableOpacity style={styles.addIconContainer} onPress={() => navigation.navigate('NewExpence')}>
           <Ionicons name='ios-add' color="white" size={35} />
       </TouchableOpacity>
     </View>

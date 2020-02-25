@@ -7,15 +7,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     justifyContent: 'space-between',
   },
-  header: {
-    
-  },
-  expencesList: {
-
-  },
-  tab: {
-    
-  }
 });
 
 export default styles;

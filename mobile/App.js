@@ -1,19 +1,21 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import Header from './src/components/Header';
-import ExpencesList from './src/components/ExpencesList';
-import Tab from './src/components/Tab';
+import Main from './src/pages/Main';
+import NewExpence from './src/pages/NewExpence';
 
-import styles from './App.styles';
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
       <StatusBar hidden={true} />
-      <Header style={styles.header} />
-      <ExpencesList style={styles.expencesList} />
-      <Tab style={styles.tab} />
-    </View>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='Main' component={Main} />      
+        <Stack.Screen name='NewExpence' component={NewExpence} />      
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

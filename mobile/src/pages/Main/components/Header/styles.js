@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
     width: '100%',
+    paddingVertical: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc', 
     flexDirection: 'row',
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   headerTextBold: {
       textAlign: 'center',
-      fontSize: 15,
+      fontSize: 17,
       fontWeight: 'bold',
       color: '#acbf47',
   },
