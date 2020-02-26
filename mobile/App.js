@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { createTable, listExpences } from './src/services/sqlite';
+import { createTable } from './src/services/sqlite';
 
 import Main from './src/pages/Main';
 import NewExpence from './src/pages/NewExpence';
