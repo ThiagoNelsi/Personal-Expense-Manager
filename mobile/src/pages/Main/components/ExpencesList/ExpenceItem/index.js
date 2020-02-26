@@ -4,17 +4,17 @@ import { EvilIcons } from '@expo/vector-icons';
 
 import styles from './styles';
 
-function ExpenceItem() {
+function ExpenceItem({ value, description = 'Sem descrição' }) {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.price}>R$ 5,00</Text>
-        <Text style={styles.description}>Sem descrição</Text>
-      </View> 
+        <Text style={styles.price}>R$ { value.toFixed(2) }</Text>
+        <Text style={styles.description}>{ description }</Text>
+      </View>
       <View>
         <EvilIcons name='location' size={25} color='#888' />
-      </View> 
-    </View>           
+      </View>
+    </View>
   );
 }
 
