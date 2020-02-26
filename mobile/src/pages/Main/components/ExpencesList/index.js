@@ -1,40 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView } from 'react-native';
-import { db } from '../../../../services/sqlite';
+import { ScrollView, RefreshControl } from 'react-native';
+import { listExpences } from '../../../../services/sqlite';
 
 import ExpenceItem from './ExpenceItem';
 
 function ExpencesList() {
 
-  const [expences, setExpences] = useState();
+  const [refreshing, setRefreshing] = useState(false);
+  const [expences, setExpences] = useState([]);
+
+  function updateExpenceList() {
+    listExpences(data => {
+      setExpences(data);
+    });
+  }
 
   useEffect(() => {
-    function getExpencesList() {
-      return new Promise(
-        function (resolve, reject) {
-          db.transaction(tx => {
-            tx.executeSql(
-              "SELECT * FROM expences;",
-              [],
-              (_, { rows }) => {
-                  resolve(setExpences(rows._array));
-              },
-              (_, err) => {
-                reject(console.log(err));
-              }
-            );
-          });
-        }
-      )
-    }
-    getExpencesList();
+    updateExpenceList();
   }, []);
 
-  if(!expences) return null;
+  function onRefresh() {
+    setRefreshing(true);
+    updateExpenceList();
+    setTimeout(() => setRefreshing(false), 500);
+  }
 
   return (
-    <ScrollView>
-      {expences.map(expence => <ExpenceItem key={expence.id} value={expence.value} description={expence.description} />)}
+    <ScrollView refreshControl={
+      <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+    }>
+      {expences.map(expence => <ExpenceItem key={expence.id} id={expence.id} value={expence.value} description={expence.description} update={updateExpenceList} />)}
     </ScrollView>
   );
 }
