@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View } from 'react-native';
 
 import Header from './components/Header';
-import ExpencesList from './components/ExpencesList';
+import ExpensesList from './components/ExpensesList';
 import Tab from './components/Tab';
 
 import styles from './styles';
@@ -11,7 +11,7 @@ function Main({ navigation }) {
   return (
     <View style={styles.container}>
       <Header />
-      <ExpencesList />
+      <ExpensesList />
       <Tab navigation={navigation} />
     </View>
   );

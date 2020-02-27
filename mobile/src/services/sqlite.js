@@ -1,19 +1,20 @@
 import * as SQLite from 'expo-sqlite';
 
-const db = SQLite.openDatabase('expencesApp.db');
+const db = SQLite.openDatabase('expensesApp.db');
+
 
 export function createTable() {
   db.transaction(tx => {
     tx.executeSql(
-      "CREATE TABLE IF NOT EXISTS expences (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, value REAL NOT NULL, description TEXT);"
+      "CREATE TABLE IF NOT EXISTS expenses (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, value REAL NOT NULL, description TEXT);", [],()=>{}, (_,err) => console.log(err)
     );
   });
 }
 
-export function listExpences(callback) {
+export function listExpenses(callback) {
   db.transaction(tx => {
     tx.executeSql(
-      "SELECT * FROM expences ORDER BY id DESC;",
+      "SELECT * FROM expenses ORDER BY id DESC;",
       [],
       (_, { rows }) => {
           callback(rows._array);
@@ -25,19 +26,19 @@ export function listExpences(callback) {
   });
 }
 
-export function createExpence(value, description, callback) {
+export function createExpense(value, description, callback) {
   db.transaction(tx => {
     tx.executeSql(
-      `INSERT INTO expences (value, description) VALUES (${value}, '${description}')`, [], callback(true), callback(false)
+      `INSERT INTO expenses (value, description) VALUES (${value}, '${description}')`, [], callback(true), callback(false)
     );
   });
 }
 
-export function deleteExpence(id) {
+export function deleteExpense(id) {
   console.log(id);
   db.transaction(tx => {
     tx.executeSql(
-      `DELETE FROM expences WHERE id = ${id};`
+      `DELETE FROM expenses WHERE id = ${id};`
     );
   });
 }

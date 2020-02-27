@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 
-import { deleteExpence } from '../../../../../services/sqlite';
+import { deleteExpense } from '../../../../../services/sqlite';
 
 import styles from './styles';
 
-function ExpenceItem({ value, description, id, update }) {
+function ExpenseItem({ value, description, id, update }) {
 
   function handleDelete() {
-    deleteExpence(id);
+    deleteExpense(id);
     update();
   }
 
@@ -26,4 +26,4 @@ function ExpenceItem({ value, description, id, update }) {
   );
 }
 
-export default ExpenceItem;
+export default ExpenseItem;

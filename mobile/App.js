@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createTable } from './src/services/sqlite';
 
 import Main from './src/pages/Main';
-import NewExpence from './src/pages/NewExpence';
+import NewExpense from './src/pages/NewExpense';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +21,7 @@ export default function App() {
       <StatusBar hidden={true} />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='Main' component={Main} />
-        <Stack.Screen name='NewExpence' component={NewExpence} />
+        <Stack.Screen name='NewExpense' component={NewExpense} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, KeyboardAvoidingView, Text, TextInput, TouchableOpacity } from 'react-native';
 
-import { createExpence, listExpences } from '../../services/sqlite';
+import { createExpense } from '../../services/sqlite';
 
 import styles from './styles';
 
-function NewExpence({ navigation }) {
+function NewExpense({ navigation }) {
 
   const [money, setMoney] = useState('');
   const [cents, setCents] = useState('00');
@@ -13,7 +13,7 @@ function NewExpence({ navigation }) {
 
   function handleSubmit() {
     const value = Number(money + '.' + cents);
-    createExpence(value, description, (success) => {
+    createExpense(value, description, (success) => {
       if(success) navigation.navigate('Main');
     });
 
@@ -38,4 +38,4 @@ function NewExpence({ navigation }) {
   );
 }
 
-export default NewExpence;
+export default NewExpense;

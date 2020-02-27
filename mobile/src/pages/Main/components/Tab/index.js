@@ -7,7 +7,7 @@ import styles from './styles';
 function Tab({ navigation }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.addIconContainer} onPress={() => navigation.navigate('NewExpence')}>
+      <TouchableOpacity style={styles.addIconContainer} onPress={() => navigation.navigate('NewExpense')}>
           <Ionicons name='ios-add' color="white" size={35} />
       </TouchableOpacity>
     </View>
