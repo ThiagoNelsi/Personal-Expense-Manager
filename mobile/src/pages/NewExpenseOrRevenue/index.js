@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
 import { View, KeyboardAvoidingView, Text, TextInput, TouchableOpacity } from 'react-native';
 
-import { createExpense } from '../../services/sqlite';
+import { createItem } from '../../services/sqlite';
+import { getItem, setItem } from '../../services/asyncStorage';
 
 import styles from './styles';
 
-function NewExpense({ navigation }) {
+function NewExpenseOrRevenue({ navigation, route: { params: { type, updateBalance } } }) {
+
+  console.log(type);
 
   const [money, setMoney] = useState('');
   const [cents, setCents] = useState('00');
   const [description, setDescription] = useState('');
 
-  function handleSubmit() {
+  async function handleSubmit() {
+
     const value = Number(money + '.' + cents);
-    createExpense(value, description, (success) => {
-      if(success) navigation.navigate('Main');
+    createItem(type, value, description, (success) => {
+      if (success) navigation.navigate('Main');
     });
 
+    if (type === 'revenues') {
+      const lastValue = Number(await getItem('balance'));
+      await setItem('balance', (lastValue + value).toFixed(2));
+    } else {
+      const lastValue = Number(await getItem('balance'));
+      await setItem('balance', (lastValue - value).toFixed(2));
+    }
+
+    updateBalance();
   }
 
   return (
@@ -38,4 +51,4 @@ function NewExpense({ navigation }) {
   );
 }
 
-export default NewExpense;
+export default NewExpenseOrRevenue;

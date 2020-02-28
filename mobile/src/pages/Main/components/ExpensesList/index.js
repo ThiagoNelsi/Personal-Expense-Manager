@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, RefreshControl } from 'react-native';
-import { listExpenses } from '../../../../services/sqlite';
+import { listItems } from '../../../../services/sqlite';
+import { getItem } from '../../../../services/asyncStorage';
 
 import ExpenseItem from './ExpenseItem';
 
 function ExpensesList() {
 
   const [refreshing, setRefreshing] = useState(false);
-  const [expenses, setExpenses] = useState([]);
+  const [list, setList] = useState([]);
 
   function updateExpenseList() {
-    listExpenses(data => {
-      setExpenses(data);
+    listItems('expenses', data => {
+      setList(data);
     });
   }
 
   useEffect(() => {
-    updateExpenseList();
+    onRefresh();
   }, []);
 
   function onRefresh() {
@@ -29,7 +30,7 @@ function ExpensesList() {
     <ScrollView refreshControl={
       <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
     }>
-      {expenses.map(expense => <ExpenseItem key={expense.id} id={expense.id} value={expense.value} description={expense.description} update={updateExpenseList} />)}
+      {list.map(item => <ExpenseItem key={item.id} id={item.id} value={item.value} description={item.description} update={updateExpenseList} />)}
     </ScrollView>
   );
 }

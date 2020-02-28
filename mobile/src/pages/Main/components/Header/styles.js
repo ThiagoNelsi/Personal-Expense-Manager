@@ -10,16 +10,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  headerTextBold: {
-      textAlign: 'center',
-      fontSize: 17,
-      fontWeight: 'bold',
-      color: '#acbf47',
-  },
-  headerTextRegular: {
-      textAlign: 'center',
-      color: '#777',
-  }
 });
 
 export default styles;
