@@ -6,10 +6,10 @@ import { deleteItem } from '../../../../../services/sqlite';
 
 import styles from './styles';
 
-function ExpenseItem({ value, description, id, update }) {
+function ExpenseItem({ value, description, id, update, type }) {
 
   function handleDelete() {
-    deleteItem('expenses', id);
+    deleteItem(type, id);
     update();
   }
 

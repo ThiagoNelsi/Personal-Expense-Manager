@@ -1,24 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, RefreshControl } from 'react-native';
+import { ScrollView, RefreshControl, Text } from 'react-native';
 import { listItems } from '../../../../services/sqlite';
-import { getItem } from '../../../../services/asyncStorage';
 
 import ExpenseItem from './ExpenseItem';
+import styles from './styles';
 
-function ExpensesList() {
+function ExpensesList({ type }) {
 
   const [refreshing, setRefreshing] = useState(false);
   const [list, setList] = useState([]);
 
-  function updateExpenseList() {
-    listItems('expenses', data => {
-      setList(data);
-    });
-  }
-
   useEffect(() => {
     onRefresh();
-  }, []);
+  }, [type]);
 
   function onRefresh() {
     setRefreshing(true);
@@ -26,11 +20,20 @@ function ExpensesList() {
     setTimeout(() => setRefreshing(false), 500);
   }
 
+  function updateExpenseList() {
+    listItems(type, data => {
+      setList(data);
+    });
+  }
+
   return (
     <ScrollView refreshControl={
       <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
     }>
-      {list.map(item => <ExpenseItem key={item.id} id={item.id} value={item.value} description={item.description} update={updateExpenseList} />)}
+      { list.length > 0
+        ? list.map(item => <ExpenseItem key={item.id} id={item.id} value={item.value} description={item.description} update={updateExpenseList} type={type} />)
+        : <Text style={styles.noDataMessage}>Nenhum registro</Text>
+      }
     </ScrollView>
   );
 }
