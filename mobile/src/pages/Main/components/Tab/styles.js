@@ -1,4 +1,14 @@
 import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
+
+export const Button = styled.TouchableOpacity`
+  width: 60px;
+  height: 60px;
+  background-color: ${props => props.type === 'revenues' ? '#c8db67' : '#c96f6f'};
+  align-items: center;
+  justify-content: center;
+  border-radius: 33px;
+`;
 
 const styles = StyleSheet.create({
   container: {
@@ -10,12 +20,7 @@ const styles = StyleSheet.create({
       paddingVertical: 5,
   },
   addIconContainer: {
-      width: 60,
-      height: 60,
-      backgroundColor: '#c5e03a',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 33,
+
   },
   addIcon: {
       color: 'white',

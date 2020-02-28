@@ -4,7 +4,7 @@ import { EvilIcons } from '@expo/vector-icons';
 
 import { deleteItem } from '../../../../../services/sqlite';
 
-import styles from './styles';
+import styles, { Container } from './styles';
 
 function ExpenseItem({ value, description, id, update, type }) {
 
@@ -14,7 +14,7 @@ function ExpenseItem({ value, description, id, update, type }) {
   }
 
   return (
-    <View style={styles.container}>
+    <Container type={type} style={styles.container}>
       <View>
         <Text style={styles.price}>R$ { value.toFixed(2) }</Text>
         <Text style={styles.description}>{ description ? description : 'Sem descrição' }</Text>
@@ -22,7 +22,7 @@ function ExpenseItem({ value, description, id, update, type }) {
       <TouchableOpacity onPress={() => handleDelete()}>
         <EvilIcons name='trash' size={25} color='#a83232' />
       </TouchableOpacity>
-    </View>
+    </Container>
   );
 }
 

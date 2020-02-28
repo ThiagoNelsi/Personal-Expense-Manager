@@ -11,7 +11,7 @@ function Header({ setType }) {
         <Text style={styles.headerIconTextGreen}>Receita</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.headerIcon} onPress={() => setType('expenses') } >
-        <Text style={styles.headerIconTextRed}>Gastos</Text>
+        <Text style={styles.headerIconTextRed}>Despesas</Text>
       </TouchableOpacity>
     </View>
   );
