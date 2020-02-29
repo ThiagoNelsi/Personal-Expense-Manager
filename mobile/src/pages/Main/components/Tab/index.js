@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import React, { useEffect, useContext } from 'react';
+import { View, Text } from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
-import { getItem } from '../../../../services/asyncStorage';
+import { appContext } from '../../../../context';
 
 import styles, { Button } from './styles';
 
-function Tab({ navigation, type }) {
+function Tab({ navigation }) {
 
-  const [balance, setBalance] = useState(0);
+  const { type, balance, updateBalance } = useContext(appContext);
 
   useEffect(() => {
     updateBalance();
   }, []);
-
-  async function updateBalance() {
-    setBalance(await getItem('balance'));
-  }
 
   return (
     <View style={styles.container}>
@@ -24,7 +20,7 @@ function Tab({ navigation, type }) {
         <Text style={styles.headerTextBold}>R$ { Number(balance).toFixed(2).replace('.', ',') }</Text>
         <Text style={styles.headerTextRegular}>saldo</Text>
       </View>
-      <Button type={type} style={styles.addIconContainer} onPress={async () => { navigation.navigate('NewExpenseOrRevenue', { type: type, updateBalance } ); }} >
+      <Button type={type} style={styles.addIconContainer} onPress={() => navigation.navigate('NewExpenseOrRevenue') }>
           { type === 'revenues'
             ? <Ionicons name='ios-add' color='white' size={35} />
             : <AntDesign name='minus' color='white' size={35} />

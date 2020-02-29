@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 
+import { appContext } from '../../../../../context';
+
 import { deleteItem } from '../../../../../services/sqlite';
+import { setItem } from '../../../../../services/asyncStorage';
 
 import styles, { Container } from './styles';
 
-function ExpenseItem({ value, description, id, update, type }) {
+function ExpenseItem({ value, description, id }) {
 
-  function handleDelete() {
+  const { updateList, type, balance, updateBalance } = useContext(appContext);
+
+  async function handleDelete() {
+    const newBalanceValue = Number(balance) + (type === 'revenues' ? -value : value);
+    await setItem('balance', String(newBalanceValue.toFixed(2)));
     deleteItem(type, id);
-    update();
+    updateList();
+    updateBalance();
   }
 
   return (

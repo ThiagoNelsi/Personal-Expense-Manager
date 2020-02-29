@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, KeyboardAvoidingView, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { createItem } from '../../services/sqlite';
 import { getItem, setItem } from '../../services/asyncStorage';
 
+import { appContext } from '../../context';
+
 import styles from './styles';
 
-function NewExpenseOrRevenue({ navigation, route: { params: { type, updateBalance } } }) {
+function NewExpenseOrRevenue({ navigation }) {
 
-  console.log(type);
+  const { updateBalance, type, onRefresh } = useContext(appContext);
 
   const [money, setMoney] = useState('');
   const [cents, setCents] = useState('00');
@@ -29,6 +31,7 @@ function NewExpenseOrRevenue({ navigation, route: { params: { type, updateBalanc
       await setItem('balance', (lastValue - value).toFixed(2));
     }
 
+    onRefresh();
     updateBalance();
   }
 

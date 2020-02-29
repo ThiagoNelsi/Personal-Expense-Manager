@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
+
+import { appContext } from '../../../../context';
 
 import styles from './styles';
 
-function Header({ setType }) {
+function Header() {
+
+  const { setType } = useContext(appContext);
 
   return (
     <View style={styles.container}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 
 import Header from './components/Header';
@@ -8,14 +8,11 @@ import Tab from './components/Tab';
 import styles from './styles';
 
 function Main({ navigation }) {
-
-  const [type, setType] = useState('expenses');
-
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} setType={setType} />
-      <ExpensesList navigation={navigation} type={type} />
-      <Tab navigation={navigation} type={type} />
+      <Header navigation={navigation} />
+      <ExpensesList navigation={navigation} />
+      <Tab navigation={navigation} />
     </View>
   );
 }
