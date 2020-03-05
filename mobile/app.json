@@ -13,7 +13,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -27,7 +27,7 @@
     },
     "android": {
       "package": "com.nelsi.xpense",
-      "versionCode": 1
+      "versionCode": 2
     }
   }
 }
