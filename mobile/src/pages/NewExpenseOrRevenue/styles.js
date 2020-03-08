@@ -15,28 +15,23 @@ const styles = StyleSheet.create({
   },
   moneyInputContainer: {
     flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: '#999',
+    width: '60%',
   },
   moneyInputText: {
+    margin: 0,
     fontSize: 25,
+    color: '#777'
   },
   moneyInput: {
-    borderBottomWidth: 1,
-    borderColor: '#777',
     fontSize: 25,
-    width: '25%',
-    marginRight: 5,
     marginLeft: 10,
-    textAlign: 'right',
-  },
-  centsInput: {
-    borderBottomWidth: 1,
-    borderColor: '#777',
-    fontSize: 25,
-    width: '10%',
-    textAlign: 'right',
+    flex: 1,
+    color: '#777'
   },
   descriptionInput: {
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: '#999',
     padding: 5,
     marginVertical: 30,

@@ -13,12 +13,11 @@ function NewExpenseOrRevenue({ navigation }) {
   const { updateBalance, type, onRefresh } = useContext(appContext);
 
   const [money, setMoney] = useState('');
-  const [cents, setCents] = useState('00');
   const [description, setDescription] = useState('');
 
   async function handleSubmit() {
 
-    const value = Number(money + '.' + cents);
+    const value = Number(money.replace(',', '.'));
     createItem(type, value, description, (success) => {
       if (success) navigation.navigate('Main');
     });
@@ -40,8 +39,7 @@ function NewExpenseOrRevenue({ navigation }) {
       <View style={styles.subContainer}>
         <View style={styles.moneyInputContainer}>
           <Text style={styles.moneyInputText}>R$</Text>
-          <TextInput style={styles.moneyInput} keyboardType='decimal-pad' maxLength={5} autoFocus={true} value={money} onChangeText={setMoney} />
-          <TextInput style={styles.centsInput} keyboardType='decimal-pad' maxLength={2} value={cents} onChangeText={setCents} />
+          <TextInput style={styles.moneyInput} keyboardType='decimal-pad' maxLength={10} autoFocus={true} value={money} onChangeText={setMoney} />
         </View>
         <View>
           <TextInput style={styles.descriptionInput} placeholder='Descrição...' maxLength={35} value={description} onChangeText={setDescription} />

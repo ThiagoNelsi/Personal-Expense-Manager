@@ -24,7 +24,7 @@ function ExpenseItem({ value, description, id }) {
   return (
     <Container type={type} style={styles.container}>
       <View>
-        <Text style={styles.price}>R$ { value.toFixed(2) }</Text>
+        <Text style={styles.price}>R$ { String(value.toFixed(2)).replace('.', ',') }</Text>
         <Text style={styles.description}>{ description ? description : 'Sem descrição' }</Text>
       </View>
       <TouchableOpacity onPress={() => handleDelete()}>
